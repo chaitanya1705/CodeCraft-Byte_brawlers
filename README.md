@@ -10,6 +10,9 @@ This is a web application built with Streamlit that helps users analyze their re
 - **Resume Tips & Ideas**: The application evaluates the resume content and provides tips and ideas for improvement. It suggests adding sections like Objective, Declaration, Hobbies/Interests, Achievements, and Projects to enhance the overall quality of the resume.
 - **Resume Score**: The application calculates a resume writing score based on the content added to the resume. It provides visual feedback on the score and encourages users to improve their resumes accordingly.
 
+## Screenshot:
+<img src="https://github.com/chaitanya1705/CodeCraft-Byte_brawlers-Resume_Analyser/blob/main/Resume-Analyzer.png">
+
 ## Installation
 
 1. Clone the repository:
