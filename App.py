@@ -61,7 +61,8 @@ def get_course_recommendation(query):
     return response
 
 def run():
-    st.title("Resume Analyser")
+    st.title("Resume Analyser🎓")
+    st.write("Welcome to the Resume Analyzer! Please upload your resume below to receive personalized recommendations and reviews.")
     st.sidebar.markdown("# Choose User")
     activities = ["Normal User"]
     choice = st.sidebar.selectbox("Choose the given option:", activities)
