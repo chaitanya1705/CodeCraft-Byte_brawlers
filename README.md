@@ -1,4 +1,4 @@
-# Resume Analyzer
+# Resume Analyser
 
 This is a web application built with Streamlit that helps users analyze their resumes, providing insights on skills, course recommendations, and tips for improving the resume. The application extracts information from uploaded resumes in PDF format using `pyresparser` and performs analysis based on the extracted data.
 
