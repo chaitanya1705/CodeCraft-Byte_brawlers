@@ -1,10 +1,5 @@
-pdfminer3
-pyresparser
 streamlit
-pandas
-plotly
+pyresparser
+pdfminer.six
 streamlit-tags
-Pillow
-nltk
-pdfminer3
-spacy==2.3.5
+gradientai
