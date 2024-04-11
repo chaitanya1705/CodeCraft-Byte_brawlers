@@ -8,12 +8,8 @@ from pdfminer3.converter import TextConverter
 import io, random
 import time
 from streamlit_tags import st_tags
-from Courses import uiux_course
-from Courses import ds_course
-from Courses import web_course
-from Courses import android_course
-from Courses import ios_course
-
+import os
+from gradientai import Gradient
 
 st.set_page_config(
     page_title="Resume Analyzer",
@@ -37,18 +33,8 @@ def pdf_reader(file):
     return text
 
 def course_recommender(course_list):
-    st.subheader("**Courses & Certificates🎓 Recommendations**")
-    c = 0
-    rec_course = []
-    no_of_reco = st.slider('Choose Number of Course Recommendations:', 1, 10, 4)
-    random.shuffle(course_list)
-    for c_name, c_link in course_list:
-        c += 1
-        st.markdown(f"({c}) [{c_name}]({c_link})")
-        rec_course.append(c_name)
-        if c == no_of_reco:
-            break
-    return rec_course
+    pass
+
 import streamlit as st
 import base64
 
@@ -57,6 +43,20 @@ def show_pdf(file_path):
         base64_pdf = base64.b64encode(f.read()).decode('utf-8')
     pdf_display = F'<iframe src="data:application/pdf;base64,{base64_pdf}" width="700" height="1000" type="application/pdf"></iframe>'
     st.markdown(pdf_display, unsafe_allow_html=True)
+
+def get_course_recommendation(query):
+    os.environ["GRADIENT_ACCESS_TOKEN"] = "YOUR_TOKEN"
+    os.environ["GRADIENT_WORKSPACE_ID"] = "YOUR_WORKSPACE_ID"
+
+    with Gradient() as gradient:
+        base_model = gradient.get_base_model(base_model_slug="llama2-7b-chat")
+        new_model_adapter = base_model.create_model_adapter(name="course_recommendation_model")
+
+        response = new_model_adapter.complete(query=query, max_generated_token_count=100).generated_output
+
+        new_model_adapter.delete()
+
+    return response
 
 def run():
     st.title("Resume Analyser")
@@ -110,7 +110,6 @@ def run():
                                                        text='Recommended skills generated from System',
                                                        value=recommended_skills, key='2')
                         st.markdown('''<h4 style='text-align: left; color: #1ed760;'>Adding this skills to resume will boost🚀 the chances of getting a Job💼</h4>''', unsafe_allow_html=True)
-                        rec_course = course_recommender(ds_course)
                         break
 
                     elif i.lower() in web_keyword:
@@ -121,7 +120,6 @@ def run():
                                                        text='Recommended skills generated from System',
                                                        value=recommended_skills, key='3')
                         st.markdown('''<h4 style='text-align: left; color: #1ed760;'>Adding this skills to resume will boost🚀 the chances of getting a Job💼</h4>''', unsafe_allow_html=True)
-                        rec_course = course_recommender(web_course)
                         break
 
                     elif i.lower() in android_keyword:
@@ -132,7 +130,6 @@ def run():
                                                        text='Recommended skills generated from System',
                                                        value=recommended_skills, key='4')
                         st.markdown('''<h4 style='text-align: left; color: #1ed760;'>Adding this skills to resume will boost🚀 the chances of getting a Job💼</h4>''', unsafe_allow_html=True)
-                        rec_course = course_recommender(android_course)
                         break
 
                     elif i.lower() in ios_keyword:
@@ -143,7 +140,6 @@ def run():
                                                        text='Recommended skills generated from System',
                                                        value=recommended_skills, key='5')
                         st.markdown('''<h4 style='text-align: left; color: #1ed760;'>Adding this skills to resume will boost🚀 the chances of getting a Job💼</h4>''', unsafe_allow_html=True)
-                        rec_course = course_recommender(ios_course)
                         break
 
                     elif i.lower() in uiux_keyword:
@@ -154,8 +150,15 @@ def run():
                                                        text='Recommended skills generated from System',
                                                        value=recommended_skills, key='6')
                         st.markdown('''<h4 style='text-align: left; color: #1ed760;'>Adding this skills to resume will boost🚀 the chances of getting a Job💼</h4>''', unsafe_allow_html=True)
-                        rec_course = course_recommender(uiux_course)
                         break
+                def course_recommendation(query):
+                    st.subheader("**Course Recommendations🎓**")
+                    response = get_course_recommendation(query)
+                    st.markdown(response, unsafe_allow_html=True)
+                user_query = st.text_area("Enter the skill:", height=100)
+
+                if st.button("Get Recommendations"):
+                    course_recommendation(user_query)
 
                 st.subheader("**Resume Tips & Ideas💡**")
                 resume_score = 0
@@ -209,6 +212,8 @@ def run():
                 
             else:
                 st.error('Something went wrong..')
+            
+            
     
 
 run()
