@@ -11,7 +11,7 @@ This is a web application built with Streamlit that helps users analyze their re
 - **Resume Score**: The application calculates a resume writing score based on the content added to the resume. It provides visual feedback on the score and encourages users to improve their resumes accordingly.
 
 ## Screenshot:
-<img src="https://github.com/chaitanya1705/CodeCraft-Byte_brawlers-Resume_Analyser/blob/main/Resume-Analyzer.png">
+<img src="https://github.com/chaitanya1705/CodeCraft-Byte_brawlers-Resume_Analyser/blob/main/Resume-Analyzer%20(2).png">
 
 ## Installation
 
