@@ -45,8 +45,8 @@ def show_pdf(file_path):
     st.markdown(pdf_display, unsafe_allow_html=True)
 
 def get_course_recommendation(query):
-    os.environ["GRADIENT_ACCESS_TOKEN"] = "YOUR_TOKEN"
-    os.environ["GRADIENT_WORKSPACE_ID"] = "YOUR_WORKSPACE_ID"
+    os.environ["GRADIENT_ACCESS_TOKEN"] = "xjVTf9Co8h3S8rFyjvvfSaKQjbVVzDFD"
+    os.environ["GRADIENT_WORKSPACE_ID"] = "02d78f4a-6dcd-4ced-b111-c60166d706cd_workspace"
 
     with Gradient() as gradient:
         base_model = gradient.get_base_model(base_model_slug="llama2-7b-chat")
@@ -92,7 +92,7 @@ def run():
                                    value=resume_data['skills'], key='1')
 
                 ds_keyword = ['tensorflow', 'keras', 'pytorch', 'machine learning', 'deep Learning', 'flask', 'streamlit']
-                web_keyword = ['react', 'django', 'node jS', 'react js', 'php', 'laravel', 'magento', 'wordpress', 'javascript', 'angular js', 'c#', 'flask']
+                web_keyword = ['react', 'django', 'node jS', 'react js', 'php', 'laravel', 'Magento', 'wordpress', 'javascript', 'angular js', 'c#', 'flask']
                 android_keyword = ['android', 'android development', 'flutter', 'kotlin', 'xml', 'kivy']
                 ios_keyword = ['ios', 'ios development', 'swift', 'cocoa', 'cocoa touch', 'xcode']
                 uiux_keyword = ['ux', 'adobe xd', 'figma', 'zeplin', 'balsamiq', 'ui', 'prototyping', 'wireframes', 'storyframes', 'adobe photoshop', 'photoshop', 'editing', 'adobe illustrator', 'illustrator', 'adobe after effects', 'after effects', 'adobe premier pro', 'premier pro', 'adobe indesign', 'indesign', 'wireframe', 'solid', 'grasp', 'user research', 'user experience']
@@ -208,12 +208,13 @@ def run():
                 st.success('** Your Resume Writing Score: ' + str(score) + '**')
                 st.warning("** Note: This score is calculated based on the content that you have added in your Resume. **")
                 st.balloons()
-
+                
                 
             else:
                 st.error('Something went wrong..')
             
-            
+        st.sidebar.markdown('''---''')
+        st.sidebar.text("Built by Team ByteBrawlers")
     
 
 run()
