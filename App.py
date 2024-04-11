@@ -47,8 +47,8 @@ def show_pdf(file_path):
     st.markdown(pdf_display, unsafe_allow_html=True)
 
 def get_course_recommendation(query):
-    os.environ["GRADIENT_ACCESS_TOKEN"] = "xjVTf9Co8h3S8rFyjvvfSaKQjbVVzDFD"
-    os.environ["GRADIENT_WORKSPACE_ID"] = "02d78f4a-6dcd-4ced-b111-c60166d706cd_workspace"
+    os.environ["GRADIENT_ACCESS_TOKEN"] = "YOUR_TOKEN"
+    os.environ["GRADIENT_WORKSPACE_ID"] = "YOUR_WORKSPACE_ID"
 
     with Gradient() as gradient:
         base_model = gradient.get_base_model(base_model_slug="llama2-7b-chat")
