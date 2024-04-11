@@ -10,6 +10,8 @@ import time
 from streamlit_tags import st_tags
 import os
 from gradientai import Gradient
+import nltk
+nltk.download('stopwords')
 
 st.set_page_config(
     page_title="Resume Analyzer",
