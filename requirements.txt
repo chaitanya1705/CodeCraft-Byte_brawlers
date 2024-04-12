@@ -3,4 +3,4 @@ pyresparser
 pdfminer.six
 streamlit-tags
 gradientai
-nltk
+pdfminer3
