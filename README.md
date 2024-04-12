@@ -18,7 +18,7 @@ This is a web application built with Streamlit that helps users analyze their re
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/your_username/Resume-Analyzer.git
+git clone https://github.com/chaitanya1705/CodeCraft-Byte_brawlers-Resume_Analyser
 ```
 
 2. Install the required dependencies:
