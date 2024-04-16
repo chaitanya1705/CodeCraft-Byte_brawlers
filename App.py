@@ -12,6 +12,10 @@ import os
 from gradientai import Gradient
 import nltk
 nltk.download('stopwords')
+from langchain.chains import LLMChain
+from langchain_community.llms import GradientLLM
+import streamlit as st
+import base64
 
 st.set_page_config(
     page_title="Resume Analyzer",
@@ -34,11 +38,7 @@ def pdf_reader(file):
     fake_file_handle.close()
     return text
 
-def course_recommender(course_list):
-    pass
 
-import streamlit as st
-import base64
 
 def show_pdf(file_path):
     with open(file_path, "rb") as f:
@@ -47,18 +47,19 @@ def show_pdf(file_path):
     st.markdown(pdf_display, unsafe_allow_html=True)
 
 def get_course_recommendation(query):
-    os.environ["GRADIENT_ACCESS_TOKEN"] = "YOUR_TOKEN"
-    os.environ["GRADIENT_WORKSPACE_ID"] = "YOUR_WORKSPACE_ID"
+    llm = GradientLLM(
+    model="<YOUR ADAPTER ID>",
+    model_kwargs=dict(max_generated_token_count=128),
+    )
 
-    with Gradient() as gradient:
-        base_model = gradient.get_base_model(base_model_slug="llama2-7b-chat")
-        new_model_adapter = base_model.create_model_adapter(name="course_recommendation_model")
+    template = """Question: {query}  Answer: """
 
-        response = new_model_adapter.complete(query=query, max_generated_token_count=100).generated_output
+    prompt = PromptTemplate.from_template(template) 
 
-        new_model_adapter.delete()
+    llm_chain = LLMChain(prompt=prompt, llm=llm)   
 
-    return response
+    result = llm_chain.run(query=query)
+    return result
 
 def run():
     st.title("Resume Analyser🎓")

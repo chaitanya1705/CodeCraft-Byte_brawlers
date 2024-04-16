@@ -4,3 +4,7 @@ pdfminer.six
 streamlit-tags
 gradientai
 pdfminer3
+nltk
+langchain
+langchain-core
+langchain-community
