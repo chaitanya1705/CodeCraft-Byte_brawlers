@@ -35,16 +35,13 @@ pip install -r requirements.txt
 python finetune.py
 ```
 
-4. Go to gradient.ai and copy model adapter number and paste in `App.py`
-
-
-5.Create New Directory `Uploaded_Resumes` is created with a resume in it.
+4.Create New Directory `Uploaded_Resumes` is created with a resume in it.
 
 ```bash
 mkdir Uploaded_Resumes
 ```
 
-3. Run the application:
+5. Run the application:
 
 ```bash
 streamlit run app.py
