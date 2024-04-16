@@ -32,7 +32,7 @@ pip install -r requirements.txt
 3. Finetune Model Using gradient.ai 
 
 ```bash
-python  finetune.py
+python finetune.py
 ```
 
 4. Go to gradient.ai and copy model adapter number and paste in `App.py`
